@@ -1,16 +1,15 @@
-# Music Player App
+# Music Player Web Application
 
-A React Native mobile application that allows users to search for music using the Spotify API, play song previews, and manage favorites.
-
-![Demo](demo.gif)
+A modern web-based music player application built with React and the Spotify Web API. This application allows users to search for tracks, preview songs, and manage favorites with a sleek, iTunes-inspired interface.
 
 ## Features
 
-- Search for songs using Spotify's extensive music database
-- Play song previews (using iTunes preview URLs)
-- Add/remove songs to favorites
-- Beautiful and intuitive user interface
-- Persistent storage for favorites
+- 🔍 Real-time track search with debounced input
+- 🎵 Audio preview functionality
+- 💟 Favorite tracks management
+- 📱 Responsive grid layout
+- 🎨 Modern, iTunes-inspired design
+- 🔄 Smooth animations and transitions
 
 ## Installation
 
@@ -23,77 +22,82 @@ cd musicplayer
 2. Install dependencies:
 ```bash
 npm install
-cd ios && pod install && cd ..
 ```
 
-3. Create a `.env` file in the root directory with your Spotify API credentials:
+3. Create a `.env` file in the root directory and add your Spotify API credentials:
 ```
-SPOTIFY_CLIENT_ID=your_client_id
-SPOTIFY_CLIENT_SECRET=your_client_secret
+REACT_APP_SPOTIFY_CLIENT_ID=your_client_id_here
+REACT_APP_SPOTIFY_CLIENT_SECRET=your_client_secret_here
 ```
 
-4. Start the Metro bundler:
+4. Start the development server:
 ```bash
 npm start
 ```
 
-5. Run the app:
-```bash
-# For iOS
-npm run ios
-
-# For Android
-npm run android
-```
-
 ## Design Decisions
 
-### Architecture
-- **TypeScript**: Used throughout the project for type safety and better developer experience
-- **React Navigation**: Implemented bottom tabs and stack navigation for intuitive user flow
-- **Hybrid API Approach**: Uses Spotify API for rich metadata and iTunes API for reliable preview URLs
+### Technology Stack
+- **React**: Chosen for its component-based architecture and efficient rendering
+- **TypeScript**: Adds type safety and improves development experience
+- **Spotify Web API**: Provides access to a vast music library and metadata
+- **CSS Modules**: Ensures style encapsulation and maintainable CSS
 
-### Major Libraries
-- `@react-navigation/native` and `@react-navigation/bottom-tabs` for navigation
-- `@react-native-async-storage/async-storage` for persistent storage
-- `react-native-sound` for audio playback
-- `react-native-gesture-handler` for touch interactions
-- `react-native-safe-area-context` for safe area handling
+### UI/UX Considerations
+- iTunes-inspired grid layout for familiarity and visual appeal
+- Debounced search for optimal performance
+- Hover effects and animations for better user interaction
+- Dark theme for reduced eye strain
+- Responsive design for various screen sizes
 
-### State Management
-- Local state with React hooks for component-level state
-- AsyncStorage for persistent data (favorites)
-- Custom services for API interactions and favorites management
+## Libraries Used
 
-## Limitations and Future Improvements
+- `react-router-dom`: For client-side routing
+- `axios`: For HTTP requests
+- `react-icons`: For consistent and scalable icons
+- `lodash.debounce`: For search input optimization
+
+## Known Limitations & Future Improvements
 
 ### Current Limitations
-1. Preview availability depends on iTunes matching
-2. No offline support
-3. Limited error handling for network issues
-4. No audio queue management for consecutive previews
+- Preview playback limited to 30 seconds (Spotify API restriction)
+- No user authentication system
+- Limited offline functionality
+- No playlist management
 
 ### Future Improvements
-1. **Enhanced Audio Features**
-   - Progress bar for previews
-   - Volume control
-   - Background audio playback
+1. **Authentication & User Profiles**
+   - Implement Spotify OAuth
+   - Save user preferences
+   - Sync favorites across devices
 
-2. **User Experience**
-   - Playlist creation
+2. **Enhanced Playback**
+   - Full-track playback for premium users
+   - Queue management
+   - Crossfade between tracks
+   - Equalizer settings
+
+3. **Additional Features**
+   - Playlist creation and management
    - Advanced search filters
-   - Better error messages
-   - Loading states for audio
-
-3. **Technical Improvements**
-   - Implement caching for search results
-   - Add unit and integration tests
-   - Improve preview matching algorithm
-   - Add offline support
-   - Implement proper error boundaries
-
-4. **Additional Features**
-   - User authentication
-   - Social sharing
    - Lyrics display
-   - Related songs recommendations
+   - Social sharing options
+
+4. **Performance Optimization**
+   - Implement virtual scrolling for large result sets
+   - Add service worker for offline capability
+   - Optimize image loading with lazy loading
+
+5. **UI Enhancements**
+   - Light/dark theme toggle
+   - Customizable grid layouts
+   - More animation options
+   - Accessibility improvements
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
