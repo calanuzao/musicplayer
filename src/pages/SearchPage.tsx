@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Track } from '../types/music';
 import { musicApiService } from '../services/musicApi';
-import MusicCard from '../components/musiccard';
+import MusicCard from '../components/MusicCard';
 import './SearchPage.css';
 
 const SearchPage: React.FC = () => {

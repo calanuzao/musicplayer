@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import SearchPage from './pages/SearchPage';
 import DetailsPage from './pages/DetailsPage';
+import FavoritesPage from './pages/FavoritesPage';
 import './App.css';
 
 // I'm creating a sample track for testing
@@ -15,22 +16,26 @@ const sampleTrack = {
 };
 
 // I'm creating the main App component that will handle routing
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>Music Player</h1>
+          <nav>
+            <Link to="/" className="nav-link">Search</Link>
+            <Link to="/favorites" className="nav-link">Favorites</Link>
+          </nav>
         </header>
         <main>
           <Routes>
             <Route path="/" element={<SearchPage />} />
             <Route path="/track/:id" element={<DetailsPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>
         </main>
       </div>
     </Router>
   );
-}
+};
 
 export default App; 
