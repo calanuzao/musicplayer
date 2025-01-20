@@ -2,6 +2,21 @@
 
 A modern web-based music player application built with React and the Spotify Web API. This application allows users to search for tracks, preview songs, and manage favorites with a sleek, iTunes-inspired interface.
 
+## Project Branches
+
+This repository contains two main branches:
+- `main`: Contains the React Native mobile application version
+- `web-version`: Contains the React web application version (current documentation)
+
+Choose the appropriate branch based on your needs:
+```bash
+# For web version
+git clone -b web-version https://github.com/calanuzao/musicplayer.git
+
+# For mobile version
+git clone -b main https://github.com/calanuzao/musicplayer.git
+```
+
 ## Features
 
 - 🔍 Real-time track search with debounced input
