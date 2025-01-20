@@ -2,26 +2,30 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import Sound from 'react-native-sound';
-import { Track } from '../types/musictypes';
+import { RootStackScreenProps } from '../navigation/types';
 
-const DetailsScreen = ({ route }) => {
+const DetailsScreen: React.FC<RootStackScreenProps<'Details'>> = ({ route }) => {
     const { track } = route.params;
 
     const playPreview = () => {
-        const sound = new Sound(track.previewUrl, null, (error) => {
-            if (error) {
-                console.log('Failed to load the sound', error);
-                return;
-            }
-            sound.play();
-        });
+        if (track.previewUrl) {
+            const sound = new Sound(track.previewUrl, '', (error) => {
+                if (error) {
+                    console.log('Failed to load the sound', error);
+                    return;
+                }
+                sound.play();
+            });
+        }
     };
 
     return (
         <View style={styles.container}>
             <Text style={styles.trackName}>{track.name}</Text>
             <Text style={styles.artistName}>{track.artist}</Text>
-            <Button title="Play Preview" onPress={playPreview} />
+            {track.previewUrl && (
+                <Button title="Play Preview" onPress={playPreview} />
+            )}
         </View>
     );
 };

@@ -4,13 +4,14 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import SearchScreen from './src/screens/searchscreen';
-import DetailsScreen from './src/screens/detailscreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SearchScreen from './src/screens/SearchScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import { RootStackParamList } from './src/navigation/types';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const App = () => {
+function App(): React.JSX.Element {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <SafeAreaProvider>
@@ -35,6 +36,6 @@ const App = () => {
             </SafeAreaProvider>
         </GestureHandlerRootView>
     );
-};
+}
 
 export default App;
