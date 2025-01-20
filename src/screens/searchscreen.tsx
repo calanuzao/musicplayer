@@ -59,6 +59,9 @@ const SearchScreen: React.FC<TabScreenProps<'SearchTab'>> = ({ navigation }) => 
       <View style={styles.trackInfo}>
         <Text style={styles.trackName}>{item.name}</Text>
         <Text style={styles.artistName}>{item.artist}</Text>
+        {item.previewUrl && item.previewUrl.length > 0 && (
+          <Text style={styles.previewAvailable}>▶️ Preview available</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -137,6 +140,11 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginTop: 20,
+  },
+  previewAvailable: {
+    color: '#1DB954',
+    fontSize: 12,
+    marginTop: 4,
   },
 });
 

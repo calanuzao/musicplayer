@@ -67,19 +67,19 @@ const DetailsScreen: React.FC<RootStackScreenProps<'Details'>> = ({ route }) => 
                 <Text style={styles.albumName}>{track.album}</Text>
 
                 <View style={styles.buttonContainer}>
-                    {track.previewUrl && (
+                    {track.previewUrl && track.previewUrl.length > 0 && (
                         <TouchableOpacity
-                            style={[styles.button, isPlaying && styles.buttonPlaying]}
+                            style={[styles.playButton, isPlaying && styles.buttonPlaying]}
                             onPress={handlePlayPreview}
                         >
-                            <Text style={styles.buttonText}>
-                                {isPlaying ? 'Stop Preview' : 'Play Preview'}
+                            <Text style={styles.playButtonText}>
+                                {isPlaying ? '⏹️ Stop' : '▶️ Play Preview'}
                             </Text>
                         </TouchableOpacity>
                     )}
 
                     <TouchableOpacity
-                        style={[styles.button, isFavorited && styles.buttonFavorited]}
+                        style={[styles.favoriteButton, isFavorited && styles.buttonFavorited]}
                         onPress={handleToggleFavorite}
                     >
                         <Text style={styles.buttonText}>
@@ -96,19 +96,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        padding: 16,
     },
     albumArt: {
         width: '100%',
-        height: 300,
-        resizeMode: 'cover',
+        aspectRatio: 1,
+        borderRadius: 8,
+        marginBottom: 16,
     },
     infoContainer: {
-        padding: 20,
+        flex: 1,
     },
     trackName: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 8,
+        color: '#000',
     },
     artistName: {
         fontSize: 18,
@@ -118,28 +121,53 @@ const styles = StyleSheet.create({
     albumName: {
         fontSize: 16,
         color: '#888',
-        marginBottom: 20,
+        marginBottom: 24,
     },
     buttonContainer: {
-        gap: 10,
+        gap: 12,
     },
-    button: {
+    playButton: {
         backgroundColor: '#1DB954',
-        padding: 15,
+        paddingVertical: 12,
+        paddingHorizontal: 24,
         borderRadius: 25,
         alignItems: 'center',
-        marginTop: 10,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    favoriteButton: {
+        backgroundColor: '#fff',
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: '#ddd',
     },
     buttonPlaying: {
         backgroundColor: '#E74C3C',
     },
     buttonFavorited: {
-        backgroundColor: '#E91E63',
+        backgroundColor: '#FFE4E1',
+        borderColor: '#E74C3C',
+    },
+    playButtonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     buttonText: {
-        color: '#fff',
         fontSize: 16,
-        fontWeight: '600',
+        color: '#666',
     },
 });
 
