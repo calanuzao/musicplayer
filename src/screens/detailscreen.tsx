@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import Sound from 'react-native-sound';
-import { Track } from '../types/MusicTypes';
+import { Track } from '../types/musictypes';
 
 const DetailsScreen = ({ route }) => {
     const { track } = route.params;

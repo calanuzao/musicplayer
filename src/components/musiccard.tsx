@@ -3,14 +3,14 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Track } from '../types/musictypes';
 
-const musicCard = ({ track }: { track: Track }) => {
+const MusicCard = ({ track }: { track: Track }) => {
     return (
         <View style={styles.card}>
             <Image source={{ uri: track.artworkUrl }} style={styles.image} />
             <Text style={styles.trackName}>{track.name}</Text>
             <Text style={styles.artistName}>{track.artist}</Text>
         </View>
- );
+    );
 };
 
 const styles = StyleSheet.create({
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default musicCard;
+export default MusicCard;

@@ -3,11 +3,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { searchMusic } from '../services/MusicService';
-import MusicCard from '../components/MusicCard';
-import { Track } from '../types/MusicTypes';
+import { searchMusic } from '../services/musicservice';
+import MusicCard from '../components/musiccard';
+import { Track } from '../types/musictypes';
 
-const searchscreen = ({ navigation }) => {
+const SearchScreen = ({ navigation }) => {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<Track[]>([]);
 
@@ -38,7 +38,7 @@ const searchscreen = ({ navigation }) => {
                         <MusicCard track={item} />
                     </TouchableOpacity>
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
             />
         </View>
     );
@@ -47,15 +47,16 @@ const searchscreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
+        padding: 16,
     },
     searchBar: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: '#ccc',
         borderWidth: 1,
+        borderRadius: 5,
         paddingHorizontal: 10,
-        marginBottom: 10,
+        marginBottom: 16,
     },
 });
 
-export default searchcreen;
+export default SearchScreen;
