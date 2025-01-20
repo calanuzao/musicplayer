@@ -1,4 +1,11 @@
-# Music Player App
+# Music Player Project
+## Project Branches
+
+This repository contains two main branches:
+- `main`: Contains the React Native mobile application version (current documentation)
+- `web-version`: Contains the React web application version 
+
+# iOS App
 
 A React Native mobile application that allows users to search for music using the Spotify API, play song previews, and manage favorites.
 
