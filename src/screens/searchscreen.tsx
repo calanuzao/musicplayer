@@ -12,11 +12,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import { RootStackScreenProps } from '../navigation/types';
+import { TabScreenProps } from '../navigation/types';
 import { Track, SearchState } from '../types/music';
 import { searchTracks } from '../services/musicApi';
 
-const SearchScreen: React.FC<RootStackScreenProps<'Search'>> = ({ navigation }) => {
+const SearchScreen: React.FC<TabScreenProps<'SearchTab'>> = ({ navigation }) => {
   const [state, setState] = useState<SearchState>({
     query: '',
     results: [],
