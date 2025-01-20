@@ -2,27 +2,31 @@
 .search-page {
   min-height: calc(100vh - 64px);
   background-color: #121212;
-  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
 .search-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* I'm styling the search bar container */
 .search-bar {
+  width: 100%;
+  max-width: 600px;
   margin-bottom: 3rem;
   display: flex;
   justify-content: center;
-  padding: 0 1rem;
 }
 
 /* I'm styling the search input */
 .search-input {
   width: 100%;
-  max-width: 600px;
   padding: 1rem 1.5rem;
   font-size: 1.1rem;
   color: white;
@@ -44,8 +48,10 @@
 
 /* I'm styling the search results section */
 .search-results {
-  min-height: 200px;
-  padding: 0 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 /* I'm styling the loading state */
@@ -95,7 +101,26 @@
 /* I'm styling the results grid */
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 1rem 0;
+  grid-template-columns: repeat(4, 250px);
+  grid-template-rows: repeat(4, 250px);
+  gap: 1rem;
+  justify-content: center;
+  align-content: center;
+}
+
+/* Ensure all cards in the grid are the same size */
+.results-grid > * {
+  width: 250px;
+  height: 250px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #181818;
+  transition: transform 0.3s ease;
+}
+
+.results-grid > *:hover {
+  transform: scale(1.05);
+  z-index: 1;
 } 
