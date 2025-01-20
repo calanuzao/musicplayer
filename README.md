@@ -2,7 +2,7 @@
 ## Project Branches
 
 This repository contains two main branches:
-- `main`: Contains the React Native mobile application version (current documentation)
+- `app-version`: Contains the React Native mobile application version (current documentation)
 - `web-version`: Contains the React web application version 
 
 # iOS App
