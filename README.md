@@ -1,4 +1,4 @@
-# Music Player Project
+# Music Player
 ## Project Branches
 
 This repository contains two main branches:
