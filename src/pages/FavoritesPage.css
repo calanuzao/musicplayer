@@ -1,17 +1,19 @@
 .favorites-page {
-  min-height: calc(100vh - 64px);
-  background-color: #121212;
-  padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .favorites-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .favorites-container h1 {
-  color: white;
+  color: #333;
   margin-bottom: 2rem;
   font-size: 2rem;
   font-weight: 700;
@@ -20,7 +22,7 @@
 .no-favorites {
   text-align: center;
   padding: 4rem 0;
-  color: #909090;
+  color: #666;
 }
 
 .no-favorites p {
@@ -46,6 +48,7 @@
 }
 
 .favorites-grid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
@@ -59,9 +62,9 @@
   width: 100%;
   padding: 0.8rem;
   margin-top: 0.5rem;
-  background-color: #e74c3c;
-  color: white;
-  border: none;
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
   border-radius: 4px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -70,5 +73,6 @@
 }
 
 .remove-favorite:hover {
-  background-color: #c0392b;
+  background-color: #e74c3c;
+  color: white;
 } 
