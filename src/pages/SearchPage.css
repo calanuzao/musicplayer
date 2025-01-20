@@ -1,0 +1,101 @@
+/* I'm styling the search page container */
+.search-page {
+  min-height: calc(100vh - 64px);
+  background-color: #121212;
+  padding-top: 2rem;
+}
+
+.search-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* I'm styling the search bar container */
+.search-bar {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* I'm styling the search input */
+.search-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #282828;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #909090;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: #333;
+  box-shadow: 0 0 0 2px #1db954;
+}
+
+/* I'm styling the search results section */
+.search-results {
+  min-height: 200px;
+  padding: 0 1rem;
+}
+
+/* I'm styling the loading state */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #909090;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  border: 3px solid #282828;
+  border-top: 3px solid #1db954;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* I'm styling the error and no results states */
+.error,
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #909090;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.no-results h2 {
+  margin-bottom: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.no-results p {
+  color: #909090;
+}
+
+/* I'm styling the results grid */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+} 

@@ -1,112 +1,70 @@
 // api service to handle spotify api calls 
 
 import { Track, SearchResponse } from '../types/music';
-import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '@env';
-import { Buffer } from 'buffer';
+import axios from 'axios';
+import { spotifyService } from './spotify';
 
 const SPOTIFY_API_URL = 'https://api.spotify.com/v1';
 const SPOTIFY_ACCOUNTS_URL = 'https://accounts.spotify.com/api/token';
 const ITUNES_API_URL = 'https://itunes.apple.com/search';
 
-let accessToken: string | null = null;
-let tokenExpirationTime: number | null = null;
+interface iTunesSearchResult {
+  previewUrl: string;
+  artistName: string;
+  trackName: string;
+}
 
-const getAccessToken = async (): Promise<string> => {
-  // Check if we have a valid token
-  if (accessToken && tokenExpirationTime && Date.now() < tokenExpirationTime) {
-    return accessToken;
+class MusicApiService {
+  private token: string = '';
+  private tokenExpirationTime: number = 0;
+  private readonly clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+  private readonly clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+
+  // I'm creating a method to search iTunes for preview URLs
+  private async searchiTunes(artist: string, trackName: string): Promise<string | undefined> {
+    try {
+      const query = `${artist} ${trackName}`.replace(/[^\w\s]/g, '');
+      const response = await axios.get(`${ITUNES_API_URL}`, {
+        params: {
+          term: query,
+          media: 'music',
+          limit: 1
+        }
+      });
+
+      const results = response.data.results as iTunesSearchResult[];
+      return results[0]?.previewUrl;
+    } catch (error) {
+      console.error('Error searching iTunes:', error);
+      return undefined;
+    }
   }
 
-  try {
-    const response = await fetch(SPOTIFY_ACCOUNTS_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + Buffer.from(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'),
-      },
-      body: 'grant_type=client_credentials',
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to get access token');
-    }
-
-    const data = await response.json();
-    const newToken = data.access_token;
-    if (!newToken) {
-      throw new Error('No access token received');
-    }
-    
-    accessToken = newToken;
-    // Set expiration time 5 minutes before actual expiration to be safe
-    tokenExpirationTime = Date.now() + (data.expires_in - 300) * 1000;
-    
-    return newToken;
-  } catch (error) {
-    console.error('Authentication error:', error);
-    throw new Error('Failed to authenticate with Spotify');
-  }
-};
-
-const getPreviewUrl = async (trackName: string, artistName: string): Promise<string> => {
-  try {
-    const query = `${trackName} ${artistName}`.replace(/[^\w\s]/gi, '');
-    const response = await fetch(
-      `${ITUNES_API_URL}?term=${encodeURIComponent(query)}&media=music&entity=song&limit=1`
-    );
-    
-    if (!response.ok) {
-      return '';
-    }
-
-    const data = await response.json();
-    if (data.results && data.results.length > 0) {
-      return data.results[0].previewUrl || '';
-    }
-    
-    return '';
-  } catch (error) {
-    console.error('Preview URL fetch error:', error);
-    return '';
-  }
-};
-
-export const searchTracks = async (query: string): Promise<SearchResponse> => {
-  try {
-    const token = await getAccessToken();
-    const response = await fetch(
-      `${SPOTIFY_API_URL}/search?q=${encodeURIComponent(query)}&type=track&limit=20`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+  // I'm creating a method to enhance track data with iTunes preview URLs
+  private async enhanceWithPreview(track: Track): Promise<Track> {
+    if (!track.previewUrl) {
+      const previewUrl = await this.searchiTunes(track.artist, track.name);
+      if (previewUrl) {
+        return { ...track, previewUrl };
       }
-    );
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch tracks');
     }
-
-    const data = await response.json();
-    
-    // Map tracks and fetch preview URLs
-    const tracks: Track[] = await Promise.all(
-      data.tracks.items.map(async (item: any) => {
-        const previewUrl = await getPreviewUrl(item.name, item.artists[0].name);
-        return {
-          id: item.id,
-          name: item.name,
-          artist: item.artists[0].name,
-          album: item.album.name,
-          albumArt: item.album.images[0]?.url || '',
-          previewUrl,
-        };
-      })
-    );
-
-    return { tracks };
-  } catch (error) {
-    console.error('Search error:', error);
-    throw new Error('Failed to search tracks');
+    return track;
   }
-}; 
+
+  // I'm creating a method to search tracks with enhanced preview URLs
+  async searchTracks(query: string): Promise<Track[]> {
+    const spotifyTracks = await spotifyService.searchTracks(query);
+    const enhancedTracks = await Promise.all(
+      spotifyTracks.map(track => this.enhanceWithPreview(track))
+    );
+    return enhancedTracks;
+  }
+
+  // I'm creating a method to get track details with enhanced preview URL
+  async getTrackDetails(trackId: string): Promise<Track> {
+    const track = await spotifyService.getTrackDetails(trackId);
+    return this.enhanceWithPreview(track);
+  }
+}
+
+export const musicApiService = new MusicApiService(); 

@@ -5,7 +5,7 @@ export interface Track {
   artist: string;
   album: string;
   albumArt: string;
-  previewUrl: string;
+  previewUrl?: string;
 }
 
 export interface SearchResponse {

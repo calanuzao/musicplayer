@@ -1,0 +1,139 @@
+/* I'm styling the details page container */
+.details-page {
+  min-height: calc(100vh - 64px);
+  background-color: #f5f5f5;
+  padding: 2rem;
+}
+
+.details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+/* I'm styling the back button */
+.back-button {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: #1db954;
+}
+
+/* I'm styling the track details section */
+.track-details {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* I'm styling the album art */
+.album-art {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* I'm styling the track information */
+.info {
+  flex: 1;
+}
+
+.track-name {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.artist-name {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: #666;
+  font-weight: 500;
+}
+
+.album-name {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+/* I'm styling the preview button */
+.preview-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preview-button:hover {
+  background-color: #1ed760;
+  transform: translateY(-1px);
+}
+
+.preview-button.playing {
+  background-color: #e74c3c;
+}
+
+.preview-button.playing:hover {
+  background-color: #c0392b;
+}
+
+/* I'm styling loading and error states */
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #1db954;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* I'm adding responsive styles */
+@media (max-width: 768px) {
+  .track-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .album-art {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 1.5rem;
+  }
+
+  .track-name {
+    font-size: 2rem;
+  }
+} 

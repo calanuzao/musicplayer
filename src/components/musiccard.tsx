@@ -1,37 +1,40 @@
-// displays individual music tracks
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { Track } from '../types/musictypes';
+import './musiccard.css';
 
-const MusicCard = ({ track }: { track: Track }) => {
-    return (
-        <View style={styles.card}>
-            <Image source={{ uri: track.artworkUrl }} style={styles.image} />
-            <Text style={styles.trackName}>{track.name}</Text>
-            <Text style={styles.artistName}>{track.artist}</Text>
-        </View>
-    );
+// I'm defining the Track interface for type safety
+interface Track {
+  id: string;
+  name: string;
+  artist: string;
+  album: string;
+  albumArt: string;
+  previewUrl?: string;
+}
+
+// I'm creating a component to display individual music tracks
+const MusicCard: React.FC<{ track: Track; onPlay?: () => void; onSelect?: () => void }> = ({
+  track,
+  onPlay,
+  onSelect
+}) => {
+  return (
+    <div className="music-card" onClick={onSelect}>
+      <img src={track.albumArt} alt={`${track.name} album art`} className="album-art" />
+      <div className="track-info">
+        <h3 className="track-name">{track.name}</h3>
+        <p className="artist-name">{track.artist}</p>
+        <p className="album-name">{track.album}</p>
+        {track.previewUrl && (
+          <button className="preview-button" onClick={(e) => {
+            e.stopPropagation();
+            onPlay?.();
+          }}>
+            ▶️ Play Preview
+          </button>
+        )}
+      </div>
+    </div>
+  );
 };
-
-const styles = StyleSheet.create({
-    card: {
-        padding: 10,
-        margin: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        alignItems: 'center',
-    },
-    image: {
-        width: 100,
-        height: 100,
-    },
-    trackName: {
-        fontWeight: 'bold',
-    },
-    artistName: {
-        color: 'gray',
-    },
-});
 
 export default MusicCard;
