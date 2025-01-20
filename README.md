@@ -9,6 +9,9 @@ This repository contains two main branches:
 
 A modern web-based music player application built with React and the Spotify Web API. This application allows users to search for tracks, preview songs, and manage favorites with a sleek, iTunes-inspired interface.
 
+![Music Player Demo](demo.png)
+*iTunes-inspired grid layout with hover effects and preview functionality*
+
 Choose the appropriate branch based on your needs:
 ```bash
 # For web version
