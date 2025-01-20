@@ -1,19 +1,17 @@
 /* I'm styling the music card container */
 .music-card {
-  background-color: white;
+  background-color: #181818;
   padding: 1.5rem;
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
   text-align: left;
   position: relative;
-  border: 1px solid #eee;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .music-card:hover {
+  background-color: #282828;
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .favorite-button-container {
@@ -24,8 +22,8 @@
 }
 
 .favorite-button {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #eee;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -40,12 +38,11 @@
 
 .favorite-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .favorite-button.favorited {
-  background: rgba(231, 76, 60, 0.1);
-  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.8);
 }
 
 /* I'm styling the album artwork */
@@ -54,12 +51,12 @@
   aspect-ratio: 1;
   border-radius: 4px;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* I'm styling the track information */
 .track-info {
-  color: #333;
+  color: white;
 }
 
 .track-name {
@@ -74,7 +71,7 @@
 .artist-name,
 .album-name {
   font-size: 0.9rem;
-  color: #666;
+  color: #909090;
   margin: 0.25rem 0;
   white-space: nowrap;
   overflow: hidden;

@@ -1,13 +1,13 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: #faf9f6;
-  color: #333;
+  background-color: #121212;
+  color: white;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 .App-header {
-  background-color: white;
+  background-color: #282828;
   height: 64px;
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .App-header h1 {
@@ -34,7 +34,7 @@ nav {
 }
 
 .nav-link {
-  color: #666;
+  color: #909090;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
@@ -44,8 +44,8 @@ nav {
 }
 
 .nav-link:hover {
-  color: #1db954;
-  background-color: rgba(29, 185, 84, 0.1);
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* I'm styling the search container */
@@ -79,16 +79,13 @@ nav {
 /* I'm styling the main content area */
 main {
   position: relative;
-  min-height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
+  overflow-y: auto;
   padding: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* I'm styling the music container */
 .music-container {
-  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
